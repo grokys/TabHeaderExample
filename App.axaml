@@ -5,12 +5,4 @@
     <Application.Styles>
         <FluentTheme Mode="Light"/>
     </Application.Styles>
-	<Application.DataTemplates>
-		<DataTemplate DataType="local:TabPageHeaderModel">
-			<StackPanel Orientation="Horizontal">
-				<Image Width="32" Source="{Binding Image}"/>
-				<TextBlock Text="{Binding Title}"/>
-			</StackPanel>
-		</DataTemplate>
-	</Application.DataTemplates>
 </Application>

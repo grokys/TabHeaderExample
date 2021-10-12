@@ -5,4 +5,19 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="TabHeaderExample.MainWindow"
         Title="TabHeaderExample">
+	<TabControl>
+		<TabControl.ItemTemplate>
+			<DataTemplate>
+				<StackPanel Orientation="Horizontal">
+					<Image Width="32" Source="{Binding Image}"/>
+					<TextBlock Text="{Binding Title}"/>
+				</StackPanel>
+			</DataTemplate>
+		</TabControl.ItemTemplate>
+		<TabControl.ContentTemplate>
+			<DataTemplate>
+				<ContentControl Content="{Binding Content.PlatformImpl}"/>
+			</DataTemplate>
+		</TabControl.ContentTemplate>
+	</TabControl>
 </Window>

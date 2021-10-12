@@ -15,19 +15,12 @@ namespace TabHeaderExample
             this.AttachDevTools();
 #endif
 
-            var tabPage1 = new TabItem
-            {
-                Header = new TabPageHeaderModel("Page One", @"Assets\avalonia-32.png"),
-                Content = new Button
-                {
-                    Content = "Example content",
-                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                }
-            };
+            var tabControl = (TabControl)Content;
 
-            var tabControl = new TabControl();
-            tabControl.Items = new[] { tabPage1 };
-            Content = tabControl;
+            tabControl.Items = new[] 
+            { 
+                new SymbolTabPage("Page One", @"Assets\avalonia-32.png", new Button { Content = "Hello World!" }) 
+            };
         }
 
         private void InitializeComponent()
@@ -36,15 +29,27 @@ namespace TabHeaderExample
         }
     }
 
-    public class TabPageHeaderModel
+    public class PlatformControl
     {
-        public TabPageHeaderModel(string title, string imageFilename)
+        public PlatformControl(object control)
+        {
+            PlatformImpl = control;
+        }
+
+        public object PlatformImpl { get; }
+    }
+
+    public class SymbolTabPage
+    {
+        public SymbolTabPage(string title, string imageFilename, Control content)
         {
             Title = title;
             Image = new Bitmap(imageFilename);
+            Content = new PlatformControl(content);
         }
 
         public string Title { get; }
         public IImage Image { get; }
+        public PlatformControl Content { get; }
     }
 }
